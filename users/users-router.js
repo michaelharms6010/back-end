@@ -5,7 +5,7 @@ const Users = require("./user-model");
 router.get("/", (req, res) => {
   Users.getUsers()
     .then((users) => {
-      res.status(200).json({ users });
+      res.status(200).json(users);
     })
     .catch((err) => {
       res.status(500).json({ error: "error getting data" });
