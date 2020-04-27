@@ -21,11 +21,7 @@ exports.up = function(knex) {
         tbl.increments('id')
         tbl.string('comment', 250).notNullable()
         tbl.date('date');
-    })
-    .createTable('posts_comments', tbl =>{
-        tbl.increments('id');
-        tbl.integer('posts_id').notNullable().references('id').inTable('posts');
-        tbl.integer('comments_id').notNullable().references('id').inTable('comments');
+        tbl.integer('post_id').notNullable().references('id').inTable('posts');
     })
     .createTable('users_comments', tbl =>{
         tbl.increments('id')
@@ -37,7 +33,6 @@ exports.up = function(knex) {
 exports.down = function(knex) {
   return knex.schema
   .dropTableIfExists('users_comments')
-  .dropTableIfExists('posts_comments')
   .dropTableIfExists('comments')
   .dropTableIfExists('posts')
   .dropTableIfExists('users');
