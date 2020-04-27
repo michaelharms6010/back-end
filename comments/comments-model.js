@@ -1,29 +1,29 @@
-const db = require('../data/db-config.js');
+const db = require("../data/db-config.js");
 
 module.exports = {
-    getComments,
-    getCommentById,
-    postComment,
-    editComment, 
-    deleteComment
+  getComments,
+  getCommentById,
+  postComment,
+  editComment,
+  deleteComment,
+};
+
+function getComments() {
+  return db("comments");
 }
 
-function getComments(){
-    return db('comments')
+function getCommentById(id) {
+  return db("comments").where({ id }).first();
 }
 
-function getCommentById(id){
-    return db('comments').where({id}).first()
+function postComment(comment) {
+  return db("comments").insert(comment);
 }
 
-function postComment(comment){
-    return 
+function editComment(id, comment) {
+  return null;
 }
 
-function editComment(id, comment){
-    return null
-}
-
-function deleteComment(id){
-    return null
+function deleteComment(id) {
+  return null;
 }
