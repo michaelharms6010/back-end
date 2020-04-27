@@ -14,13 +14,13 @@ exports.up = function(knex) {
         tbl.increments('id')
         tbl.blob('post').notNullable()
         tbl.string('caption', 250)
-        tbl.date('date')
+        tbl.timestamp("date").defaultTo(knex.fn.now());
         tbl.integer('user_id').notNullable().references('id').inTable('users');
     })
     .createTable('comments', tbl =>{
         tbl.increments('id')
         tbl.string('comment', 250).notNullable()
-        tbl.date('date');
+        tbl.timestamp("date").defaultTo(knex.fn.now());
         tbl.integer('post_id').notNullable().references('id').inTable('posts');
     })
     .createTable('users_comments', tbl =>{
