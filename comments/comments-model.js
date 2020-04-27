@@ -17,7 +17,7 @@ function getCommentById(id){
 }
 
 function postComment(comment){
-    return 
+    return db('comments').insert(comment)
 }
 
 function editComment(id, comment){

@@ -24,7 +24,14 @@ router.get('/:id', (req,res)=> {
 })
 
 router.post('/', bodyValidation, (req,res)=> {
-    res.status(200).json({message: 'commments router up and running'})
+    const comment = req.body;
+    Comments.postComment(comment)
+    .then(comment => {
+        res.status(200).json(comment)
+    })
+    .catch(err => {
+        res.status(500).json({message: 'unexpected problem with database'})
+    })
 })
 
 router.put('/:id', (req,res)=> {
