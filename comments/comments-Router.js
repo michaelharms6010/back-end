@@ -30,7 +30,7 @@ router.get("/:id", (req, res) => {
 router.post("/", bodyValidation, (req, res) => {
   const comment = req.body;
   Comments.postComment(comment)
-    .then((comment) => {
+    .then(comment => {
       res.status(200).json(comment);
     })
     .catch((err) => {
