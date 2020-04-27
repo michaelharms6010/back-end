@@ -20,19 +20,9 @@ function addUser(newUser) {
 }
 
 function removeUser(id) {
-  return db("users")
-    .where({ id })
-    .delete({ id })
-    .then(() => {
-      return { id };
-    });
+  return db("users").where({ id }).delete({ id });
 }
 
 function editUser(changes, id) {
-  return db("users")
-    .where({ id })
-    .update(changes)
-    .then(() => {
-      return { id };
-    });
+  return db("users").where({ id }).update(changes);
 }
