@@ -1,0 +1,33 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bw-expat-journal-1/back-end.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bw-expat-journal-1/back-end/issues"
+  },
+  "homepage": "https://github.com/bw-expat-journal-1/back-end#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.21.0",
+    "sqlite3": "^4.1.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2",
+    "jest": "^25.4.0",
+    "nodemon": "^2.0.3",
+    "supertest": "^4.0.2"
+  }
+}
