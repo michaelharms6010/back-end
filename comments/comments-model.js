@@ -21,9 +21,9 @@ function postComment(comment) {
 }
 
 function editComment(id, comment) {
-  return null;
+  return db('comments').where({id}).update(comment)
 }
 
 function deleteComment(id) {
-  return null;
+  return db('comments').where({id}).del()
 }
