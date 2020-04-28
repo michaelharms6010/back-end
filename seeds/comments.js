@@ -1,6 +1,6 @@
 exports.seed = function (knex) {
   return knex("comments")
-    .delete()
+    .del()
     .then(function () {
       return knex("comments").insert([
         {
@@ -25,26 +25,22 @@ exports.seed = function (knex) {
           post_id: 2,
         },
         {
-
           comment: "what is this????",
           date: "2020-01-25 14:16:25",
           post_id: 3,
         },
         {
-
           comment: "how long where you there",
           date: "2020-01-27 1:16:25",
           post_id: 3,
         },
         {
-
           comment: "always wanted to go there",
           date: "2020-01-29 4:16:30",
           post_id: 4,
         },
         { comment: "cute", date: "2020-02-02 14:16:25", post_id: 4 },
         {
-
           comment: "thats my best friend",
           date: "2020-02-02 16:16:16",
           post_id: 4,
@@ -60,7 +56,6 @@ exports.seed = function (knex) {
           post_id: 6,
         },
         {
-
           comment: "i wouldve rocked out",
           date: "2020-02-12 10:16:16",
           post_id: 7,
@@ -76,7 +71,6 @@ exports.seed = function (knex) {
           post_id: 9,
         },
         {
-
           comment: "your a beast",
           date: "2020-03-02 22:16:25",
           post_id: 10,
