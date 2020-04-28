@@ -25,7 +25,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/", postValidation, (req, res) => {
   const newPost = req.body;
   Posts.addPost(newPost)
     .then((post) => {
@@ -37,7 +37,7 @@ router.post("/", (req, res) => {
     });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", idValidation, (req, res) => {
   const { id } = req.params;
   Posts.removePost(id)
     .then((post) => {
@@ -49,7 +49,7 @@ router.delete("/:id", (req, res) => {
     });
 });
 
-router.put("/:id", (req, res) => {
+router.put("/:id", postUpdateValidation, idValidation, (req, res) => {
   const changes = req.body;
   const { id } = req.params;
   Posts.editPost(changes, id)
@@ -62,4 +62,29 @@ router.put("/:id", (req, res) => {
     });
 });
 
+/// MIDDLEWARE FUNCTIONS
+function postValidation(req, res, next) {
+  req.body.post && req.body.id
+    ? next()
+    : res.status(400).json({ message: "need to add a post in the body" });
+}
+
+function postUpdateValidation(req, res, next) {
+  req.body.post
+    ? next()
+    : res.status(400).json({ message: "need to add a post in the body" });
+}
+
+function idValidation(req, res, next) {
+  const { id } = req.params;
+  Posts.getPostsById(id)
+    .then((post) =>
+      post
+        ? next()
+        : res.status(404).json({ message: "that post does not exist" })
+    )
+    .catch((err) => {
+      res.status(500).json({ message: "unexpected problem with database" });
+    });
+}
 module.exports = router;
