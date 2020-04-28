@@ -1,7 +1,6 @@
 const db = require("../data/db-config.js");
 
 module.exports = {
-  getComments,
   getCommentById,
   postComment,
   editComment,
@@ -9,9 +8,6 @@ module.exports = {
   getUserComments
 };
 
-function getComments() {
-  return db("comments");
-}
 
 function getCommentById(id) {
   return db("comments").where({ id });
@@ -33,5 +29,5 @@ function getUserComments(){
   return db("users_comments as uc")
   .join('comments as c','uc.comments_id','c.id')
   .join('users as u','uc.users_id','u.id')
-  .select('uc.id','u.username','c.comments');
+  .select('uc.id','u.username','c.*');
 }
