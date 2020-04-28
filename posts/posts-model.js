@@ -6,6 +6,7 @@ module.exports = {
   addPost,
   removePost,
   editPost,
+  getCommentsForCertainPost
 };
 
 function getPosts() {
@@ -25,4 +26,8 @@ function removePost(id) {
 }
 function editPost(changes, id) {
   return db("posts").where({ id }).update(changes);
+}
+
+function getCommentsForCertainPost(id){
+    return db('comments').where({post_id : id})
 }

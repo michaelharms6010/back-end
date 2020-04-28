@@ -25,6 +25,13 @@ router.get("/:id", (req, res) => {
     });
 });
 
+router.get('/:id/comments', (req,res)=>{
+  const { id } = req.params;
+  Posts.getCommentsForCertainPost(id)
+  .then(arrOfComments => res.status(200).json(arrOfComments))
+  .catch(err => res.status(500).json({message: 'unexpected error for database'}))
+})
+
 router.post("/", (req, res) => {
   const newPost = req.body;
   Posts.addPost(newPost)
