@@ -8,7 +8,6 @@ module.exports = {
   getUserComments
 };
 
-
 function getCommentById(id) {
   return db("comments").where({ id });
 }
