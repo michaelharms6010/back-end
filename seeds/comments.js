@@ -74,7 +74,7 @@ exports.seed = function (knex) {
         {
           comment: "you dont pop",
           date: "2020-02-02 2:16:25",
-          postd: 9,
+          postId: 9,
         },
         {
           comment: "your a beast",
