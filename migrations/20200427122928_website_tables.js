@@ -14,22 +14,39 @@ exports.up = function (knex) {
       tbl.string("post").notNullable();
       tbl.string("caption", 250);
       tbl.timestamp("date").defaultTo(knex.fn.now());
-      tbl.integer("user_id").notNullable().references("id").inTable("users");
+      tbl.integer("user_id")
+      .notNullable()
+      .references("id")
+      .inTable("users")
+      .onDelete('RESTRICT')
+      .onUpdate('CASCADE');
     })
     .createTable("comments", (tbl) => {
       tbl.increments("id");
       tbl.string("comment", 250).notNullable();
       tbl.timestamp("date").defaultTo(knex.fn.now());
-      tbl.integer("post_id").notNullable().references("id").inTable("posts");
+      tbl.integer("post_id")
+      .notNullable()
+      .references("id")
+      .inTable("posts")
+      .onDelete('RESTRICT')
+      .onUpdate('CASCADE');
     })
     .createTable("users_comments", (tbl) => {
       tbl.increments("id");
-      tbl.integer("users_id").notNullable().references("id").inTable("users");
+      tbl.integer("users_id")
+      .notNullable()
+      .references("id")
+      .inTable("users")
+      .onDelete('RESTRICT')
+      .onUpdate('CASCADE');
       tbl
         .integer("comments_id")
         .notNullable()
         .references("id")
-        .inTable("comments");
+        .inTable("comments")
+        .onDelete('RESTRICT')
+        .onUpdate('CASCADE');
     });
 };
 
