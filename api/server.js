@@ -12,6 +12,6 @@ server.use(cors());
 server.use(express.json());
 server.use("/api/auth", authRouter);
 server.use("/api/posts", postRouter);
-server.use("/api/comments" , commentRouter);
+server.use("/api/comments", commentRouter);
 
 module.exports = server;

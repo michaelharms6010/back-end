@@ -14,7 +14,7 @@ function getComments() {
 }
 
 function getCommentById(id) {
-  return db("comments").where({ id }).first();
+  return db("comments").where({ id });
 }
 
 function postComment(comment) {
@@ -30,8 +30,8 @@ function deleteComment(id) {
 }
 
 function getUserComments(){
-  db("users_comments as uc");
-  // .join('comments as c','uc.comments_id = c.id')
-  // .join('users as u','uc.users_id','u.id')
-  // .select('uc.id','u.username','c.comments')
+  return db("users_comments as uc")
+  .join('comments as c','uc.comments_id','c.id')
+  .join('users as u','uc.users_id','u.id')
+  .select('uc.id','u.username','c.comments');
 }
