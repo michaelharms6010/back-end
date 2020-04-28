@@ -15,7 +15,6 @@ exports.up = function (knex) {
       tbl.string("caption", 250);
       tbl.timestamp("date").defaultTo(knex.fn.now());
       tbl.foreign("user_id")
-      .notNullable()
       .references("id")
       .inTable("users")
       .onDelete('RESTRICT')
@@ -26,7 +25,6 @@ exports.up = function (knex) {
       tbl.string("comment", 250).notNullable();
       tbl.timestamp("date").defaultTo(knex.fn.now());
       tbl.foreign("post_id")
-      .notNullable()
       .references("id")
       .inTable("posts")
       .onDelete('RESTRICT')
@@ -35,14 +33,12 @@ exports.up = function (knex) {
     .createTable("users_comments", (tbl) => {
       tbl.increments("id");
       tbl.foreign("users_id")
-      .notNullable()
       .references("id")
       .inTable("users")
       .onDelete('RESTRICT')
       .onUpdate('CASCADE');
       tbl
         .foreign("comments_id")
-        .notNullable()
         .references("id")
         .inTable("comments")
         .onDelete('RESTRICT')
