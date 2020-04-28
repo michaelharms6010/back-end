@@ -21,7 +21,7 @@ router.get("/:id", (req, res) => {
     })
     .catch((err) => {
       res.status(500).json({ error: "error getting post by id" });
-      console.log("messed up gettin gpost by id", err);
+      console.log("messed up getting post by id", err);
     });
 });
 
