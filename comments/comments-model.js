@@ -13,7 +13,7 @@ function getCommentById(id) {
 }
 
 function postComment(comment) {
-  return db("comments").insert(comment);
+  return db("comments").insert(comment, "id");
 }
 
 function editComment(id, comment) {

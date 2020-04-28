@@ -20,12 +20,13 @@ function getPostsById(id) {
 }
 
 function addPost(newPost) {
-  return db("posts").insert(newPost);
+  return db("posts").insert(newPost, "id");
 }
 
 function removePost(id) {
   return db("posts").where({ id }).delete();
 }
+
 function editPost(changes, id) {
   return db("posts").where({ id }).update(changes);
 }

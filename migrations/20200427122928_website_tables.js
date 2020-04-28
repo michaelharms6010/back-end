@@ -14,30 +14,30 @@ exports.up = function (knex) {
       tbl.string("post").notNullable();
       tbl.string("caption", 250);
       tbl.timestamp("date").defaultTo(knex.fn.now());
-      tbl.integer("user_id")
+      tbl.integer("userId")
       .references("users.id")
-      .onDelete('RESTRICT')
+      .onDelete('CASCADE')
       .onUpdate('CASCADE');
     })
     .createTable("comments", (tbl) => {
       tbl.increments("id").primary();
       tbl.string("comment", 250).notNullable();
       tbl.timestamp("date").defaultTo(knex.fn.now());
-      tbl.integer("post_id")
+      tbl.integer("postId")
       .references("posts.id")
-      .onDelete('RESTRICT')
+      .onDelete('CASCADE')
       .onUpdate('CASCADE');
     })
     .createTable("users_comments", (tbl) => {
       tbl.increments("id");
-      tbl.integer("users_id")
+      tbl.integer("usersId")
       .references("users.id")
-      .onDelete('RESTRICT')
+      .onDelete('CASCADE')
       .onUpdate('CASCADE');
       tbl
-        .integer("comments_id")
+        .integer("commentsId")
         .references("comments.id")
-        .onDelete('RESTRICT')
+        .onDelete('CASCADE')
         .onUpdate('CASCADE');
     });
 };
