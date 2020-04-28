@@ -4,14 +4,12 @@ exports.seed = function (knex) {
     .then(function () {
       return knex("comments").insert([
         {
-
           comment: "This is the first commment on a post",
           date: "2020-01-1 20:16:22",
           post_id: 1,
         },
         { comment: "cool pic", date: "2020-01-10 14:16:25", post_id: 1 },
         {
-          id: 3,
           comment: "omg i was just there",
           date: "2020-01-10 17:16:25",
           post_id: 1,
