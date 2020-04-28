@@ -11,7 +11,7 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 server.use("/api/auth", authRouter);
-server.use("/api/posts", authorizationMiddleware, postRouter);
-server.use("/api/comments", authorizationMiddleware, commentRouter);
+server.use("/api/posts", postRouter);
+server.use("/api/comments" , commentRouter);
 
 module.exports = server;

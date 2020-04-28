@@ -6,6 +6,7 @@ module.exports = {
   postComment,
   editComment,
   deleteComment,
+  getUserComments
 };
 
 function getComments() {
@@ -26,4 +27,11 @@ function editComment(id, comment) {
 
 function deleteComment(id) {
   return db('comments').where({id}).del()
+}
+
+function getUserComments(){
+  db("users_comments as uc");
+  // .join('comments as c','uc.comments_id = c.id')
+  // .join('users as u','uc.users_id','u.id')
+  // .select('uc.id','u.username','c.comments')
 }
