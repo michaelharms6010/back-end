@@ -1,6 +1,6 @@
 
 exports.seed = function(knex) {
-  return knex('posts').del()
+  return knex('posts').delete()
     .then(function () {
       return knex('posts').insert([
         {id: 1, post: 'https://unsplash.com/photos/KMn4VEeEPR8', caption: 'this is me at he shore', date: '01/01/2020', user_id: 1},
