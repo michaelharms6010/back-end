@@ -3,15 +3,6 @@ const router = express.Router();
 const Comments = require("./comments-model.js");
 
 router.get("/", (req, res) => {
-  Comments.getComments()
-    .then((comments) => {
-      res.status(200).json(comments);
-    })
-    .catch((err) => {
-      res.status(500).json({ message: "unexpected problem with database" });
-    });
-});
-router.get("/usercomment", (req, res) => {
   Comments.getUserComments()
     .then((comments) => {
       res.status(200).json(comments);
@@ -20,6 +11,7 @@ router.get("/usercomment", (req, res) => {
       res.status(500).json({ message: "unexpected problem with database" });
     });
 });
+
 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
