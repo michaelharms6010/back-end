@@ -79,7 +79,8 @@ router.delete("/:id", idValidation, (req, res) => {
             res.status(500).json({ message: "unexpected error with database" })
           )
       : res.status(404).json({ message: "that comments doesnt exist" })
-  );
+  ).catch(err => res.status(500).json({message: 'unexpected error with database'}))
+  ;
 });
 
 function bodyValidation(req, res, next) {
