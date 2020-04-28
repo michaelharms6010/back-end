@@ -15,8 +15,7 @@ exports.up = function (knex) {
       tbl.string("caption", 250);
       tbl.timestamp("date").defaultTo(knex.fn.now());
       tbl.foreign("user_id")
-      .references("id")
-      .inTable("users")
+      .references("users.id")
       .onDelete('RESTRICT')
       .onUpdate('CASCADE');
     })
@@ -25,22 +24,19 @@ exports.up = function (knex) {
       tbl.string("comment", 250).notNullable();
       tbl.timestamp("date").defaultTo(knex.fn.now());
       tbl.foreign("post_id")
-      .references("id")
-      .inTable("posts")
+      .references("posts.id")
       .onDelete('RESTRICT')
       .onUpdate('CASCADE');
     })
     .createTable("users_comments", (tbl) => {
       tbl.increments("id");
       tbl.foreign("users_id")
-      .references("id")
-      .inTable("users")
+      .references("users.id")
       .onDelete('RESTRICT')
       .onUpdate('CASCADE');
       tbl
         .foreign("comments_id")
-        .references("id")
-        .inTable("comments")
+        .references("comments.id")
         .onDelete('RESTRICT')
         .onUpdate('CASCADE');
     });
