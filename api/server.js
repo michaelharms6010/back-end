@@ -6,6 +6,7 @@ const postRouter = require("../posts/posts-router.js");
 const commentRouter = require("../comments/comments-Router.js");
 const helmet = require("helmet");
 const cors = require("cors");
+const authorizationMiddleware = require('../auth/auth.js');//put in as middleware for the users/posts/comments endpoints before deploying and make sure it work correctly
 
 server.use(helmet());
 server.use(cors());

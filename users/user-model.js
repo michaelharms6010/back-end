@@ -5,6 +5,7 @@ module.exports = {
   addUser,
   removeUser,
   editUser,
+  login
 };
 
 function getUsers() {
@@ -25,4 +26,8 @@ function removeUser(id) {
 
 function editUser(changes, id) {
   return db("users").where({ id }).update(changes);
+}
+
+function login(username){
+  return db("users").where({ username })
 }
