@@ -115,8 +115,14 @@ router.put("/:id", postUpdateValidation, idValidation, (req, res) => {
   const changes = req.body;
   const { id } = req.params;
   Posts.editPost(changes, id)
-    .then((edits) => {
-      res.status(201).json({ message: "edit successful", changes });
+    .then(edits => {
+      Posts.getPosts()
+      .then(posts => {
+        res.status(201).json(posts);
+      })
+      .catch(err=> {
+        res.status(500).json({message: 'error with server'})
+      })
     })
     .catch((err) => {
       res.status(500).json("error editing a user");
