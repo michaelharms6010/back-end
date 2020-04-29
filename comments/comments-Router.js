@@ -93,11 +93,7 @@ router.delete("/:id", idValidation, (req, res) => {
 });
 
 function bodyValidation(req, res, next) {
-<<<<<<< HEAD
   console.log(req.body.postId);
-=======
-  console.log(req.body.postId)
->>>>>>> 5a5e85c89adef14a39fa268e9f050892d8672d59
   req.body.comment && req.body.postId
     ? next()
     : res.status(400).json({ message: "need to add a comment in the body" });
