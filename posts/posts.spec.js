@@ -33,7 +33,7 @@ describe("registering in to do test", () => {
   });
 });
 
-describe("testing getting posts", () => {
+describe("testing posts endpoints", () => {
   let token;
   beforeEach(async () => {
     const response = await request(server).post("/api/auth/login").send({
@@ -50,6 +50,25 @@ describe("testing getting posts", () => {
       .then((res) => {
         expect(res.status).toBe(200);
         expect(res.body).toBe(res.body);
+      });
+  });
+  test("should add a post", () => {
+    return request(server)
+      .post("/api/posts")
+      .set({ Authorization: token })
+      .send({ post: "imgUrl", caption: "this is  a caption" })
+      .then((res) => {
+        expect(res.status).toBe(201);
+      });
+  });
+
+  test("should edit a post", () => {
+    return request(server)
+      .put("/api/posts/1")
+      .set({ Authorization: token })
+      .send({ caption: "THIS CAPTION HAS CHANGED" })
+      .then((res) => {
+        expect(res.status).toBe(201);
       });
   });
 });
