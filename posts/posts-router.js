@@ -1,6 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const Posts = require("./posts-model");
+const cloudinary = require('cloudinary').v2;
+
+cloudinary.config({
+  cloud_name: process.env.NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET 
+})
 
 router.get("/", (req, res) => {
   Posts.getPosts()
@@ -39,13 +46,58 @@ router.post("/", (req, res) => {
   const newPost = req.body;
   Posts.addPost(newPost)
     .then((post) => {
-      res.status(201).json(newPost);
+      Posts.getPostsById(post[0])
+      .then(post=> {
+        res.status(200).json(post)
+      })
+      .catch(err => {
+        res.status(500).json({message: 'unexpected error with database'})
+      })
     })
     .catch((err) => {
       console.log("messed up adding a post", err);
       res.status(500).json({ error: "error adding a post" });
     });
 });
+
+router.put('/:id/editphoto', (req,res)=>{
+  const { id } = req.params;
+  const file = req.files.img;
+  console.log(file)
+  cloudinary.uploader.upload(file.tempFilePath, (err,results)=>{
+      console.log('results',results)
+      Posts.editPost({
+        post: results.url,
+      },id)
+      .then(newImage => {
+        res.status(201).json({newImage: results, output: newImage})
+      })
+      .catch(err => {
+        res.status(500).json({message: 'unexpected error with database '})
+      })
+  })
+})
+
+router.post('/uploadpostwithPhoto', (req,res)=>{
+  const file = req.files.img;
+  console.log(file)
+  cloudinary.uploader.upload(file.tempFilePath, (err,results)=>{
+      console.log('results',results)
+      const caption = req.body.caption;
+      const user = req.body.userId;
+      Posts.addPost({
+        post: results.url,
+        caption: caption,
+        userId: user
+      })
+      .then(newImage => {
+        res.status(201).json({newImage: results, output: newImage})
+      })
+      .catch(err => {
+        res.status(500).json({message: 'unexpected error with database'})
+      })
+  })
+})
 
 router.delete("/:id", idValidation, (req, res) => {
   const { id } = req.params;

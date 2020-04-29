@@ -25,7 +25,11 @@ router.post('/login', (req, res) => {
     console.log('this is inside the function',user)
     if(user && bycrypt.compareSync(password, user.password)){
       const token = tokenMaker(user);
-      res.status(200).json({message: `welcome ${user.username}`, token})
+      console.log(user.id)
+      res.status(200).json({
+        message: `welcome ${user.username}`, 
+        token , 
+        userId: user.id})
     }else{
       res.status(404).json({message: 'invalid credientals'})
     }
