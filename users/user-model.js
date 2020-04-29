@@ -17,7 +17,9 @@ function getUserById(id) {
 }
 
 function addUser(newUser) {
-  return db("users").insert(newUser, "id");
+  return db("users").insert(newUser, 'id').then( userId => {
+    return getUserById(userId[0])
+  });
 }
 
 function removeUser(id) {

@@ -10,9 +10,11 @@ router.post("/register", (req, res) => {
   const hash = bycrypt.hashSync(user.password, rounds);
   user.password = hash;
   Users.addUser(user).then((newUser) => {
-    res.status(201).json(user);
+    res.status(201).json(newUser);
   })
-  .catch(err => res.status(500).json({message: 'unexpected error in database '}));
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({message: 'unexpected error in database '})});
 });
 
 router.post('/login', (req, res) => {
