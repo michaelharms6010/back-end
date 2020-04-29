@@ -8,6 +8,7 @@ router.get("/", (req, res) => {
       res.status(200).json(comments);
     })
     .catch((err) => {
+      console.log(err)
       res.status(500).json({ message: "unexpected problem with database" });
     });
 });
@@ -24,6 +25,7 @@ router.get("/:id", (req, res) => {
             .json({ message: "comment with that id doesnt exist" });
     })
     .catch((err) => {
+      console.log(err)
       res.status(500).json({ message: "unexpected problem with database" });
     });
 });
@@ -43,6 +45,7 @@ router.post("/", bodyValidation, (req, res) => {
         : res.status(404).json({ message: "comment was not created" });
     })
     .catch((err) => {
+      console.log(err)
       res.status(500).json({ message: "unexpected problem with database" });
     });
 });
@@ -64,9 +67,10 @@ router.put("/:id", bodyUpdateValidation, idValidation, (req, res) => {
             .status(400)
             .json({ message: "message not updated check id and body" })
     )
-    .catch((err) =>
+    .catch((err) =>{
+    console.log(err)
       res.status(500).json({ message: "unexpected error with the database" })
-    );
+    });
 });
 
 router.delete("/:id", idValidation, (req, res) => {
@@ -79,7 +83,9 @@ router.delete("/:id", idValidation, (req, res) => {
             res.status(500).json({ message: "unexpected error with database" })
           )
       : res.status(404).json({ message: "that comments doesnt exist" })
-  ).catch(err => res.status(500).json({message: 'unexpected error with database'}))
+  ).catch(err => {
+    console.log(err)
+    res.status(500).json({message: 'unexpected error with database'})})
   ;
 });
 

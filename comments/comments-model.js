@@ -17,7 +17,7 @@ function postComment(comment) {
 }
 
 function editComment(id, comment) {
-  return db('comments').where({id}).update(comment)
+  return db('comments').where({id}).update(comment, "id")
 }
 
 function deleteComment(id) {
