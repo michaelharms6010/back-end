@@ -33,20 +33,6 @@ describe("registering in to do test", () => {
   });
 });
 
-describe("logginng in to do test", () => {
-  test("testing a user can login", async () => {
-    await request(server)
-      .post("/api/auth/login")
-      .send({
-        username: "alex",
-        password: "password",
-      })
-      .then((res) => {
-        expect(res.body.message).toBe("welcome alex");
-      });
-  });
-});
-
 describe("testing getting posts", () => {
   let token;
   beforeEach(async () => {
