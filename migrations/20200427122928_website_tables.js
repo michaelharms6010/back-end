@@ -2,10 +2,10 @@ exports.up = function (knex) {
   return knex.schema
     .createTable("users", (tbl) => {
       tbl.increments("id").primary();
-      tbl.string("username", 40).unique().notNullable();
-      tbl.string("password", 40).notNullable();
-      tbl.string("email", 60).unique().notNullable();
-      tbl.string("name", 100).notNullable();
+      tbl.string("username", 250).unique().notNullable();
+      tbl.string("password", 250).notNullable();
+      tbl.string("email", 250).unique().notNullable();
+      tbl.string("name", 250).notNullable();
       tbl.integer("age").notNullable();
       tbl.boolean("terms").defaultTo(false);
     })
