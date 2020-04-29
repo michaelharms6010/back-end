@@ -16,7 +16,7 @@ describe("registering in to do test", () => {
   beforeEach(async () => {
     await db("users").truncate();
   });
-  test("testing a user can login", async () => {
+  test("testing a user can register", async () => {
     await request(server)
       .post("/api/auth/register")
       .send({
@@ -52,6 +52,15 @@ describe("testing posts endpoints", () => {
         expect(res.body).toBe(res.body);
       });
   });
+  test("should return post by id", () => {
+    return request(server)
+      .get("/api/posts/1")
+      .set({ Authorization: token })
+      .then((res) => {
+        expect(res.status).toBe(200);
+        expect(res.body).toBe(res.body);
+      });
+  });
   test("should add a post", () => {
     return request(server)
       .post("/api/posts")
@@ -69,6 +78,14 @@ describe("testing posts endpoints", () => {
       .send({ caption: "THIS CAPTION HAS CHANGED" })
       .then((res) => {
         expect(res.status).toBe(201);
+      });
+  });
+  test("should delete a post", () => {
+    return request(server)
+      .delete("/api/posts/3 ")
+      .set({ Authorization: token })
+      .then((res) => {
+        expect(res.status).toBe(200);
       });
   });
 });
