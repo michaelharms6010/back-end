@@ -8,11 +8,10 @@ router.get("/", (req, res) => {
       res.status(200).json(comments);
     })
     .catch((err) => {
-      console.log(err)
+      console.log(err);
       res.status(500).json({ message: "unexpected problem with database" });
     });
 });
-
 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
@@ -25,7 +24,7 @@ router.get("/:id", (req, res) => {
             .json({ message: "comment with that id doesnt exist" });
     })
     .catch((err) => {
-      console.log(err)
+      console.log(err);
       res.status(500).json({ message: "unexpected problem with database" });
     });
 });
@@ -45,7 +44,7 @@ router.post("/", bodyValidation, (req, res) => {
         : res.status(404).json({ message: "comment was not created" });
     })
     .catch((err) => {
-      console.log(err)
+      console.log(err);
       res.status(500).json({ message: "unexpected problem with database" });
     });
 });
@@ -67,26 +66,30 @@ router.put("/:id", bodyUpdateValidation, idValidation, (req, res) => {
             .status(400)
             .json({ message: "message not updated check id and body" })
     )
-    .catch((err) =>{
-    console.log(err)
-      res.status(500).json({ message: "unexpected error with the database" })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ message: "unexpected error with the database" });
     });
 });
 
 router.delete("/:id", idValidation, (req, res) => {
   const { id } = req.params;
-  Comments.deleteComment(id).then((number) =>
-    number > 0
-      ? Comments.getUserComments()
-          .then((comments) => res.status(200).json(comments))
-          .catch((err) =>
-            res.status(500).json({ message: "unexpected error with database" })
-          )
-      : res.status(404).json({ message: "that comments doesnt exist" })
-  ).catch(err => {
-    console.log(err)
-    res.status(500).json({message: 'unexpected error with database'})})
-  ;
+  Comments.deleteComment(id)
+    .then((number) =>
+      number > 0
+        ? Comments.getUserComments()
+            .then((comments) => res.status(200).json(comments))
+            .catch((err) =>
+              res
+                .status(500)
+                .json({ message: "unexpected error with database" })
+            )
+        : res.status(404).json({ message: "that comments doesnt exist" })
+    )
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ message: "unexpected error with database" });
+    });
 });
 
 function bodyValidation(req, res, next) {
