@@ -90,8 +90,8 @@ router.delete("/:id", idValidation, (req, res) => {
 });
 
 function bodyValidation(req, res, next) {
-  console.log(req.body.post_id)
-  req.body.comment && req.body.post_id
+  console.log(req.body.postId)
+  req.body.comment && req.body.postId
     ? next()
     : res.status(400).json({ message: "need to add a comment in the body" });
 }
