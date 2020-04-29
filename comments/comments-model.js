@@ -25,8 +25,8 @@ function deleteComment(id) {
 }
 
 function getUserComments(){
-  return db("users_comments as uc")
-  .join('comments as c','uc.comments_id','c.id')
-  .join('users as u','uc.users_id','u.id')
-  .select('uc.id','u.username','c.*');
+  return db("comments")
+  // .join('comments as c','uc.comments_id','c.id')
+  // .join('users as u','uc.users_id','u.id')
+  // .select('uc.id','u.username','c.*');
 }

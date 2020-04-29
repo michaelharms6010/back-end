@@ -10,9 +10,9 @@ module.exports = {
 };
 
 function getPosts() {
-  return db("posts as p")
-  .join('users as u', 'p.user_id','u.id')
-  .select('p.id', 'u.username','p.post','p.caption','p.date')
+  return db("posts")
+  // .join('users as u', 'p.user_id','u.id')
+  // .select('p.id', 'u.username','p.post','p.caption','p.date')
 }
 
 function getPostsById(id) {
