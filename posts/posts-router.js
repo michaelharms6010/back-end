@@ -80,7 +80,7 @@ function postValidation(req, res, next) {
 }
 
 function postUpdateValidation(req, res, next) {
-  req.body.post
+  req.body.post || req.body.caption
     ? next()
     : res.status(400).json({ message: "need to add a post in the body" });
 }
