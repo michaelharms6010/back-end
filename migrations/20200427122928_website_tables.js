@@ -2,17 +2,17 @@ exports.up = function (knex) {
   return knex.schema
     .createTable("users", (tbl) => {
       tbl.increments("id").primary();
-      tbl.string("username", 250).unique().notNullable();
-      tbl.string("password", 250).notNullable();
-      tbl.string("email", 250).unique().notNullable();
-      tbl.string("name", 250).notNullable();
+      tbl.text("username", 250).unique().notNullable();
+      tbl.text("password", 250).notNullable();
+      tbl.text("email", 250).unique().notNullable();
+      tbl.text("name", 250).notNullable();
       tbl.integer("age").notNullable();
       tbl.boolean("terms").defaultTo(false);
     })
     .createTable("posts", (tbl) => {
       tbl.increments("id").primary();
-      tbl.string("post").notNullable();
-      tbl.string("caption", 250);
+      tbl.text("post").notNullable();
+      tbl.text("caption", 250);
       tbl.timestamp("date").defaultTo(knex.fn.now());
       tbl.integer("userId")
       .references("users.id")
@@ -21,7 +21,7 @@ exports.up = function (knex) {
     })
     .createTable("comments", (tbl) => {
       tbl.increments("id").primary();
-      tbl.string("comment", 250).notNullable();
+      tbl.text("comment", 250).notNullable();
       tbl.timestamp("date").defaultTo(knex.fn.now());
       tbl.integer("postId")
       .references("posts.id")
