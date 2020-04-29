@@ -50,7 +50,7 @@ describe("logginng in to do test", () => {
 describe("testing getting posts", () => {
   test("should return posts", async () => {
     await request(server)
-      .get("/api/posts")
+      .se.get("/api/posts")
       .then((res) => {
         expect(res.status).toBe(4000);
       });
