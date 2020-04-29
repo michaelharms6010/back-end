@@ -48,11 +48,22 @@ describe("logginng in to do test", () => {
 });
 
 describe("testing getting posts", () => {
-  test("should return posts", async () => {
-    await request(server)
-      .se.get("/api/posts")
+  let token;
+  beforeEach(async () => {
+    const response = await request(server).post("/api/auth/login").send({
+      username: "alex",
+      password: "password",
+    });
+    token = response.body.token;
+  });
+
+  test("should return posts", () => {
+    return request(server)
+      .get("/api/posts")
+      .set({ Authorization: token })
       .then((res) => {
-        expect(res.status).toBe(4000);
+        expect(res.status).toBe(200);
+        expect(res.body).toBe(res.body);
       });
   });
 });
