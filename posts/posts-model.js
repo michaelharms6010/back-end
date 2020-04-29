@@ -10,7 +10,7 @@ module.exports = {
 };
 
 function getPosts() {
-  return db("posts");
+  return db("posts").orderBy('date', 'desc');
 }
 
 function getPostsById(id) {

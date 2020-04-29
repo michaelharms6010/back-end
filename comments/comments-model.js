@@ -25,5 +25,5 @@ function deleteComment(id) {
 }
 
 function getUserComments(){
-  return db("comments")
+  return db("comments").orderBy('date', 'desc');
 }

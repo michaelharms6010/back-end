@@ -55,8 +55,8 @@ router.put("/:id", bodyUpdateValidation, idValidation, (req, res) => {
   Comments.editComment(id, comment)
     .then((comment) =>
       comment > 0
-        ? Comments.getCommentById(id)
-            .then((comment) => res.status(200).json(comment))
+        ? Comments.getUserComments()
+            .then((comments) => res.status(200).json(comments))
             .catch((err) =>
               res
                 .status(500)
