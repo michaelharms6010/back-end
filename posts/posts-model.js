@@ -11,8 +11,6 @@ module.exports = {
 
 function getPosts() {
   return db("posts")
-  .join('users', 'posts.user_id','users.id')
-  .select('post.id', 'users.username','posts.post','posts.caption','posts.date')
 }
 
 function getPostsById(id) {
