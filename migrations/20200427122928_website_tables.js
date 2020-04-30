@@ -22,29 +22,20 @@ exports.up = function (knex) {
     .createTable("comments", (tbl) => {
       tbl.increments("id").primary();
       tbl.text("comment", 250).notNullable();
-      tbl.timestamp("date").defaultTo(knex.fn.now());
+      tbl.timestamp("date").defaultTo(knex.fn.now())
+      tbl.integer("userId")
+      .references("users.id")
+      .onDelete('CASCADE')
+      .onUpdate('CASCADE');
       tbl.integer("postId")
       .references("posts.id")
       .onDelete('CASCADE')
       .onUpdate('CASCADE');
     })
-    .createTable("users_comments", (tbl) => {
-      tbl.increments("id");
-      tbl.integer("usersId")
-      .references("users.id")
-      .onDelete('CASCADE')
-      .onUpdate('CASCADE');
-      tbl
-        .integer("commentsId")
-        .references("comments.id")
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE');
-    });
 };
 
 exports.down = function (knex) {
   return knex.schema
-    .dropTableIfExists("users_comments")
     .dropTableIfExists("comments")
     .dropTableIfExists("posts")
     .dropTableIfExists("users");
