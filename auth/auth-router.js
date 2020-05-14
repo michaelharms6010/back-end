@@ -7,8 +7,8 @@ const Users = require('../users/user-model.js');
 router.post("/register", (req, res) => {
   let user = req.body;
   const rounds = process.env.HASH_ROUNDS || 8;
-  const hash = bycrypt.hashSync(user.password, rounds);
-  user.password = hash;
+  // const hash = bycrypt.hashSync(user.password, rounds);
+  // user.password = hash;
   console.log(user)
   Users.addUser(user).then((newUser) => {
     res.status(201).json({message: "Hello this worked"});
