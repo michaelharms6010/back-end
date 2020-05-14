@@ -13,7 +13,7 @@ router.post("/register", (req, res) => {
   Users.addUser(user).then((newUser) => {
     res.status(201).json({message: "Hello this worked"});
   })
-  .catch(err => res.status(500).json({message: 'unexpected error in database '}));
+  .catch(err => res.status(500).json({message: 'unexpected error in database ', err}));
 });
 
 router.post('/login', (req, res) => {
