@@ -9,8 +9,9 @@ router.post("/register", (req, res) => {
   const rounds = process.env.HASH_ROUNDS || 8;
   const hash = bycrypt.hashSync(user.password, rounds);
   user.password = hash;
+  console.log(user)
   Users.addUser(user).then((newUser) => {
-    res.status(201).json(user);
+    res.status(201).json({message: "Hello this worked"});
   })
   .catch(err => res.status(500).json({message: 'unexpected error in database '}));
 });
