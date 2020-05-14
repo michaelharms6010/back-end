@@ -9,7 +9,6 @@ router.post("/register", (req, res) => {
   const rounds = process.env.HASH_ROUNDS || 8;
   const hash = bycrypt.hashSync(user.password, rounds);
   user.password = hash;
-  console.log(user)
   Users.addUser(user).then((newUser) => {
     res.status(201).json({message: "Hello this worked"});
   })
@@ -18,7 +17,6 @@ router.post("/register", (req, res) => {
 
 router.post('/login', (req, res) => {
   let { username, password } = req.body;
-  console.log(username, password)
   Users.login(username)
   .then(([user]) => {
     console.log('this is inside the function',user)
