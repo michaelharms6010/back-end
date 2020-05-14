@@ -1,7 +1,6 @@
 
 exports.seed = function(knex) {
-  return knex('users_comments').truncate()
-    .then(function () {
+
       return knex('users_comments').insert([
         {id: 1, users_id: 7, comments_id: 1},
         {id: 2, users_id: 7, comments_id: 2},
@@ -22,5 +21,5 @@ exports.seed = function(knex) {
         {id: 17, users_id: 1, comments_id: 17},
         {id: 18, users_id: 1, comments_id: 18}
       ]);
-    });
+
 };

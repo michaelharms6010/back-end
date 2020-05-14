@@ -1,8 +1,5 @@
 exports.seed = function (knex) {
-  return knex("comments")
-    .truncate()
-    .then(function () {
-      return knex("comments").insert([
+  return knex("comments").insert([
         {
           id: 1,
           comment: "This is the first commment on a post",
@@ -102,5 +99,5 @@ exports.seed = function (knex) {
           post_id: 12,
         },
       ]);
-    });
+   
 };

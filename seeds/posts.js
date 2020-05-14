@@ -1,7 +1,6 @@
 
 exports.seed = function(knex) {
-  return knex('posts').truncate()
-    .then(function () {
+
       return knex('posts').insert([
         {id: 1, post: 'https://unsplash.com/photos/KMn4VEeEPR8', caption: 'this is me at he shore', date: '01/01/2020', user_id: 1},
         {id: 2, post: 'https://unsplash.com/photos/MMJx78V7xS8', caption: 'the forrest is awesome', date: '01/11/2020', user_id: 1},
@@ -16,5 +15,5 @@ exports.seed = function(knex) {
         {id: 11, post: 'https://unsplash.com/photos/eeTJKC_wz34', caption: 'new bike', date: '02/22/2020', user_id: 6},
         {id: 12, post: 'https://unsplash.com/photos/jEgQpfkHEWY', caption: 'roadtrip', date: '01/21/2020', user_id: 7}
       ]);
-    });
+
 };
